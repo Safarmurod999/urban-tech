@@ -17,7 +17,7 @@ const Header = ({ dropdown, setDropdown }) => {
     return (
         <header className="header-bar">
             <div className="header-container">
-                <a aria-current="page" className="" href="#/">
+                <a aria-current="page" className="" href="/">
                     <img src={logo} alt="Logo" className="logo" />
                 </a>
                 <div className="header-buttons">

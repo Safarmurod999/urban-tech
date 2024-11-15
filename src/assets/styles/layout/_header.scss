@@ -28,6 +28,7 @@
   border-top: 3px solid #000;
   box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.2);
   animation: fadeIn 0.2s ease-in-out;
+  z-index: 60;
 }
 .dropdown-menu.open {
   display: flex;
