@@ -1,0 +1,60 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800;900;1000&family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Syne:wght@400;500;600;700;800&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css");
+@import url("https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css");
+@import url("https://unpkg.com/mouse-follower@1/dist/mouse-follower.min.css");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Syne", sans-serif;
+}
+
+// body {
+//   color: var(--foreground);
+//   background: var(--background);
+//   background-color: var(--bg-color-2);
+// }
+
+:root {
+  scroll-behavior: smooth;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  color: #000;
+}
+body{
+  overflow-x: hidden;
+}
+section {
+  transition: 0.3s;
+}
+li,
+button,
+a {
+  cursor: pointer;
+}
+button,
+input,
+select,
+textarea {
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+ul {
+  list-style-type: none;
+}
+
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
