@@ -10,12 +10,6 @@
   font-family: "Syne", sans-serif;
 }
 
-// body {
-//   color: var(--foreground);
-//   background: var(--background);
-//   background-color: var(--bg-color-2);
-// }
-
 :root {
   scroll-behavior: smooth;
 }
@@ -23,6 +17,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+main{
+  min-height: 80vh;
+  overflow-x: hidden;
 }
 a {
   text-decoration: none;

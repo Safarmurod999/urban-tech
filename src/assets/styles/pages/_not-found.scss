@@ -1,0 +1,66 @@
+// SCSS Styles
+.not-found-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .error-code {
+      color: var(--primary-color);
+      font-weight: bold;
+      font-size: 5rem;
+    }
+
+    .main-text {
+      font-weight: bold;
+      margin-top: 2.5rem;
+      font-size: 2rem; 
+      @media (min-width: 1280px) {
+
+        font-size: 4rem;
+      }
+      @media (min-width: 1024px) {
+
+        font-size: 3rem;
+      }
+      @media (min-width: 768px) {
+
+        font-size: 2rem;
+      }
+    }
+
+    .sub-text {
+      color: #a0aec0; 
+      font-weight: 500;
+      margin-top: 2rem; 
+      font-size: 0.875rem;
+      @media (min-width: 768px) {
+        font-size: 1.25rem;
+      }
+      @media (min-width: 1024px) {
+        font-size: 1.5rem;
+      }
+    }
+
+    .home-link {
+      margin-top: 1.25rem;
+      border: 2px solid var(--primary-color); 
+      padding: 1rem 1.5rem;
+      border-radius: 0.5rem;
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: var(--primary-color);
+        color: #ffffff;
+      }
+    }
+  }
+}
