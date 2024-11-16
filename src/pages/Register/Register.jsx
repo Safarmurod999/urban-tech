@@ -7,12 +7,12 @@ import { signUpUser } from '../../store/Auth/authSlice';
 const Register = () => {
   const [register, setRegister] = useState({
     username: "",
-    password: "",
     email: "",
-    firstname: "",
-    lastname: "",
+    password: "",
+    first_name: "",
+    last_name: "",
     location: "",
-
+    role: "participant"
   });
   const navigate = useNavigate();
   const onChangeHandler = (e) => {
@@ -25,10 +25,11 @@ const Register = () => {
     e.preventDefault();
     try {
       e.preventDefault();
-      dispatch(signUpUser({ ...login })).then(({ payload }) => {
+      dispatch(signUpUser({ ...register })).then(({ payload }) => {
         console.log(payload)
       });
-      setRegister({ email: "", password: "", firstname: "", lastname: "", location: "", username: "" });
+      setRegister({ email: "", password: "", first_name: "", last_name: "", location: "", username: "",role:"participant" });
+      navigate("/profile");
     } catch (error) {
       console.log(error.message);
     }
@@ -62,26 +63,38 @@ const Register = () => {
             required
           />
         </div>
-        <div className="register__form--firstname">
+        <div className="register__form--password">
           {" "}
           <input
-            type="text"
-            placeholder="Firstname"
-            id="firstname"
-            name="firstname"
-            value={register.firstname}
+            type="password"
+            placeholder="Password"
+            id="password"
+            name="password"
+            value={register.password}
             onChange={onChangeHandler}
             required
           />
         </div>
-        <div className="register__form--lastname">
+        <div className="register__form--first_name">
           {" "}
           <input
             type="text"
-            placeholder="Lastname"
-            id="lastname"
-            name="lastname"
-            value={register.lastname}
+            placeholder="First name"
+            id="first_name"
+            name="first_name"
+            value={register.first_name}
+            onChange={onChangeHandler}
+            required
+          />
+        </div>
+        <div className="register__form--last_name">
+          {" "}
+          <input
+            type="text"
+            placeholder="Last name"
+            id="last_name"
+            name="last_name"
+            value={register.last_name}
             onChange={onChangeHandler}
             required
           />
@@ -93,7 +106,7 @@ const Register = () => {
             placeholder="Location"
             id="location"
             name="location"
-            value={register.firstname}
+            value={register.location}
             onChange={onChangeHandler}
             required
           />
@@ -109,7 +122,7 @@ const Register = () => {
           className="register__form--sign"
           type="submit"
         >
-          Kirish
+          Ro'yxatdan o'tish
         </button>
         <p className="bottom">Already have an account? <Link to="/login">Click here!</Link></p>
 

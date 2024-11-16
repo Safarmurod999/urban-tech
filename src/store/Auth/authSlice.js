@@ -86,8 +86,8 @@ export const authSlice = createSlice({
         state.loading = true;
         state.token = data?.access;
         state.refresh_token = data?.refresh;
-        localStorage.setItem("userToken", state.token);
-        localStorage.setItem("refresh_token", state.refresh_token);
+        localStorage.setItem("userToken", JSON.stringify(data?.access));
+        localStorage.setItem("refresh_token", JSON.stringify(data?.refresh));
       })
       .addCase(signUpUser.rejected, (state) => {
         state.loading = false;

@@ -1,5 +1,5 @@
 import { Route, Routes, useLocation } from "react-router-dom";
-import { Home, Layout, Login, NotFound, People, Profile, Projects, Register, UserProjects } from "../pages/index";
+import { Home, Layout, Login, NextStep, NotFound, People, Profile, Projects, Register, UserProjects } from "../pages/index";
 
 export const routesArr = [
     {
@@ -29,6 +29,11 @@ export const routesArr = [
     },
     {
         id: 5,
+        path: "/register/step",
+        element: NextStep
+    },
+    {
+        id: 6,
         path: "*",
         element: NotFound
     }

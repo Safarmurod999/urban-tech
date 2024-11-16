@@ -1,7 +1,11 @@
 import React from 'react'
 import ProjectsWrapper from './ProjectsWrapper/ProjectsWrapper'
+import { useFetch } from '../../hooks/useFetch'
 
 const Projects = () => {
+    const { data: projects, loading } = useFetch('/projects/projects/');
+    console.log(projects);
+    
     return (
         <section className="projects">
             <div className="container">
