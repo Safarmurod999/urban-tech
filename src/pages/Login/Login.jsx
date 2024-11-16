@@ -22,7 +22,7 @@ function Login() {
     try {
       e.preventDefault();
       dispatch(signInUser({ ...login })).then(({ payload }) => {
-        navigate("/profile/1");
+        navigate("/profile");
         console.log(payload);
         
       });

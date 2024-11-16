@@ -11,7 +11,7 @@ const initialState = {
 export const getUserInfo = createAsyncThunk(
   "getuserinfo",
   async (s, { rejectWithValue }) => {
-    const token = localStorage.getItem("userToken");
+    const token = JSON.parse(localStorage.getItem("userToken"));
     const res = await axios
       .get(`${BASE_URL}/users/profile/`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -27,7 +27,7 @@ export const getUserInfo = createAsyncThunk(
 export const getUserAppeals = createAsyncThunk(
   "getuserappeals",
   async (s, { rejectWithValue }) => {
-    const token = localStorage.getItem("userToken");
+    const token = JSON.parse(localStorage.getItem("userToken"));
     const res = await axios
       .get(`${BASE_URL}/users/appeals`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -46,10 +46,10 @@ export const updateUserInfo = createAsyncThunk(
     { firstname, lastname, email, phone, info, id },
     { rejectWithValue }
   ) => {
-    const token = localStorage.getItem("userToken");
+    const token = JSON.parse(localStorage.getItem("userToken"));
     const res = await axios
       .put(
-        `${BASE_URL}/users/profile/${id}`,
+        `${BASE_URL}/users/profile`,
         { firstname, lastname, email, phone, info },
         { headers: { Authorization: `Bearer ${token}` } }
       )
@@ -85,8 +85,8 @@ export const userSlice = createSlice({
         state.loading = true;
       })
       .addCase(getUserInfo.fulfilled, (state, { payload }) => {
-        state.loading = false;
-        state.user = payload.data;
+        state.loading = false;        
+        state.user = payload;
       })
       .addCase(getUserInfo.rejected, (state) => {
         state.loading = false;

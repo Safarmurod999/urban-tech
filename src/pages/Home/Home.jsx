@@ -20,6 +20,7 @@ import { GiThreeLeaves } from "react-icons/gi";
 
 // Import Swiper styles
 import 'swiper/css';
+import { Autoplay } from "swiper/modules";
 
 const Home = () => {
   return (
@@ -139,6 +140,11 @@ const Home = () => {
                   <Swiper
                     spaceBetween={50}
                     slidesPerView={4}
+                    autoplay={{
+                      delay: 2500,
+                      disableOnInteraction: false,
+                    }}
+                    modules={[Autoplay]}
                     breakpoints={{
                       0: {
                         slidesPerView: 1,

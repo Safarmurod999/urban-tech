@@ -4,9 +4,11 @@ import { IoMdMenu } from "react-icons/io";
 import { IoLogOutOutline } from "react-icons/io5";
 import { RxAvatar } from "react-icons/rx";
 import { useNavigate } from "react-router-dom";
-
+import { useDispatch } from "react-redux";
+import {logout} from "../../store/Auth/authSlice";
 const Header = ({ dropdown, setDropdown }) => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [open, setOpen] = useState(false);
     const [token, setToken] = localStorage.getItem('userToken') || '';
     const handleToggleMenu = () => {
@@ -50,12 +52,12 @@ const Header = ({ dropdown, setDropdown }) => {
                     </div>
                     {
                         token ? <div className={`dropdown-menu ${dropdown ? 'open' : ''}`}>
-                            <a className="menu-item" href="/profile/1">My Profile</a>
-                            <a className="menu-item" href="/profile/1/projects">My Projects</a>
+                            <a className="menu-item" href="/profile">My Profile</a>
+                            <a className="menu-item" href="/profile/projects">My Projects</a>
                             {/* <a className="menu-item" href="#/invites">My Invites</a> */}
                             {/* <a className="menu-item" href="#/messages">My Messages</a> */}
                             {/* <a className="menu-item" href="#/settings">My Settings</a> */}
-                            <div className="menu-item faint" role="presentation">
+                            <div className="menu-item faint" role="presentation" onClick={()=>dispatch(logout())}>
                                 Logout
                                 <IoLogOutOutline />
                             </div>

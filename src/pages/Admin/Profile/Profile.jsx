@@ -1,9 +1,18 @@
+import { useEffect } from "react";
 import { FaLocationDot } from "react-icons/fa6";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserInfo } from "../../../store/User/userSlice";
 
 const Profile = () => {
-    
+    const dispatch = useDispatch();
+    const { user } = useSelector((state) => state.user);
+    useEffect(() => {
+        dispatch(getUserInfo());
+    }, [dispatch])
+    console.log(user);
+
     return (
-        <div className="profile-container">
+        user && <div className="profile-container">
             <header className="profile-header">
                 <h1>My Profile</h1>
                 <button className="edit-button">
@@ -13,11 +22,11 @@ const Profile = () => {
             </header>
 
             <div className="profile-banner">
-                <div className="profile-picture">
-                    <img src="https://d29c9sc0dwanpn.cloudfront.net/user-images/oishabonu28%40gmail.com/iBOE8H/photo_2024-09-04_22-29-02.png?Expires=1797790614&Signature=II9XA57qLlSdOiTjwPWpmWbTaZbq~dkURbpKO49Md0gVm5scBhuafcaAoPJbXE-Wgaw-eolQA0j58NJigH-wDx5MOC7szZ1NNBG7Igqxjx~GghvUSL8KJjkQ7vie86tkGHoTYwGw-iRNorUT4nfS6Q-Vxx0vawAdBictS14ElvPxrybKi5LuJHPJodTaKTccDEErdfXrlTAK5SvYqwvPcuL-cb~smCfmtgmmjSFkOoZxdDPg-r2o6Pq-xJP23RzJ0a1~6vmGTKekSYXT0JqNaBQ43q7peC98B8ncefy5TgBDBv-7-HdmS7yvjsX-UMrqjW6aHzcj91Uk6upXC~vlcw__&Key-Pair-Id=APKAICK47SWNPVETHNRA" alt="Profile picture" />
-                </div>
+                {/* <div className="profile-picture">
+                <img src="https://d29c9sc0dwanpn.cloudfront.net/user-images/oishabonu28%40gmail.com/iBOE8H/photo_2024-09-04_22-29-02.png?Expires=1797790614&Signature=II9XA57qLlSdOiTjwPWpmWbTaZbq~dkURbpKO49Md0gVm5scBhuafcaAoPJbXE-Wgaw-eolQA0j58NJigH-wDx5MOC7szZ1NNBG7Igqxjx~GghvUSL8KJjkQ7vie86tkGHoTYwGw-iRNorUT4nfS6Q-Vxx0vawAdBictS14ElvPxrybKi5LuJHPJodTaKTccDEErdfXrlTAK5SvYqwvPcuL-cb~smCfmtgmmjSFkOoZxdDPg-r2o6Pq-xJP23RzJ0a1~6vmGTKekSYXT0JqNaBQ43q7peC98B8ncefy5TgBDBv-7-HdmS7yvjsX-UMrqjW6aHzcj91Uk6upXC~vlcw__&Key-Pair-Id=APKAICK47SWNPVETHNRA" alt="Profile picture" />
+            </div> */}
                 <div className="profile-title">
-                    <h2>Oyshabonu N.</h2>
+                    <h2>{user.user}</h2>
                     <div className="student-badge">
                         <span>Student ID</span>
                         <span className="id-number">24808</span>
@@ -27,25 +36,39 @@ const Profile = () => {
 
             <div className="profile-content">
                 {/* <div className="membership">
-                    <img src="academy-shield.png" alt="Academy shield" className="shield-icon" />
-                    <span>Member of</span>
-                    <a href="#" className="academy-link">The Junior Academy</a>
-                </div> */}
+                <img src="academy-shield.png" alt="Academy shield" className="shield-icon" />
+                <span>Member of</span>
+                <a href="#" className="academy-link">The Junior Academy</a>
+            </div> */}
 
                 <div className="location">
                     <FaLocationDot />
-                    <span>Yuqorichirchiq</span>
-                    <span>Uzbekistan</span>
+                    {
+                        !user?.location ? <span>Not given</span> : <span>{user.location}</span>
+                    }
+
                 </div>
 
                 <section className="about-section">
                     <h3>About Me</h3>
-                    <p>Hi! I'm Oisha very social and active student in virtual and real life. I have lots of hobbies and I'm passionate about exploring new things and gaining knowledge from that.</p>
+                    {
+                        !user?.bio ? <p>
+                            Hi! I'm Oisha very social and active student in
+                            virtual and real life. I have lots of hobbies
+                            and I'm passionate about exploring new things
+                            and gaining knowledge from that.
+                        </p> : <p>{user.bio}</p>
+                    }
+
                 </section>
 
                 <div className="availability">
                     <h4>AVAILABILITY</h4>
-                    <p>I am pretty good at generating original and unique ideas, researching, and working with the team. I also have good knowledge in many spheres including Medicine, Food Sciences, Science, and many more. Feel free to contact me anytime!</p>
+                    <p>I am pretty good at generating original and unique ideas,
+                        researching, and working with the team. I also have
+                        good knowledge in many spheres including Medicine,
+                        Food Sciences, Science, and many more. Feel free
+                        to contact me anytime!</p>
                 </div>
 
                 <div className="info-columns">

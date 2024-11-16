@@ -79,7 +79,7 @@ body {
   color: #fff;
   position: relative;
   z-index: 1;
-
+  text-transform: capitalize;
   h2 {
     margin: 0;
     font-size: 2rem;
@@ -111,7 +111,7 @@ body {
   position: relative;
   z-index: 2;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin:0 0 20px;
+  margin: 0 0 20px;
 
   .membership {
     display: flex;
@@ -140,6 +140,9 @@ body {
     gap: 0.5rem;
     color: #666;
     margin-bottom: 2rem;
+    span{
+      text-transform: capitalize;
+    }
   }
 }
 

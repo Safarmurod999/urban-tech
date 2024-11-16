@@ -53,6 +53,7 @@ export const authSlice = createSlice({
       state.refresh_token = null;
       localStorage.removeItem("userToken");
       localStorage.removeItem("refresh_token");
+      window.location.href = "/";
     },
   },
   extraReducers: (build) => {
