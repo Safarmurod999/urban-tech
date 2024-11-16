@@ -84,4 +84,12 @@
       line-height: normal;
     }
   }
+  .bottom {
+    margin-top: 10px;
+    text-align: center;
+    a {
+      color: var(--primary-color, #01384d);
+      text-decoration: underline;
+    }
+  }
 }

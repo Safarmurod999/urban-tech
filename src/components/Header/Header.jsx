@@ -3,16 +3,22 @@ import logo from "../../assets/icons/logo.svg";
 import { IoMdMenu } from "react-icons/io";
 import { IoLogOutOutline } from "react-icons/io5";
 import { RxAvatar } from "react-icons/rx";
+import { useNavigate } from "react-router-dom";
 
 const Header = ({ dropdown, setDropdown }) => {
+    const navigate = useNavigate();
     const [open, setOpen] = useState(false);
-
+    const [token, setToken] = localStorage.getItem('userToken') || '';
     const handleToggleMenu = () => {
         setOpen(!open);
     };
 
     const handleToggleDropdown = () => {
-        setDropdown(!dropdown);
+        if (token) {
+            setDropdown(!dropdown);
+        } else {
+            navigate('/login')
+        }
     };
     return (
         <header className="header-bar">
@@ -42,17 +48,19 @@ const Header = ({ dropdown, setDropdown }) => {
                     <div className="mobile-menu-icon" role="presentation" onClick={handleToggleMenu}>
                         <IoMdMenu />
                     </div>
-                    <div className={`dropdown-menu ${dropdown ? 'open' : ''}`}>
-                        <a className="menu-item" href="/profile/1">My Profile</a>
-                        {/* <a className="menu-item" href="#/profile/24808?h=my-projects">My Projects</a> */}
-                        {/* <a className="menu-item" href="#/invites">My Invites</a> */}
-                        {/* <a className="menu-item" href="#/messages">My Messages</a> */}
-                        {/* <a className="menu-item" href="#/settings">My Settings</a> */}
-                        <div className="menu-item faint" role="presentation">
-                            Logout
-                            <IoLogOutOutline />
-                        </div>
-                    </div>
+                    {
+                        token ? <div className={`dropdown-menu ${dropdown ? 'open' : ''}`}>
+                            <a className="menu-item" href="/profile/1">My Profile</a>
+                            <a className="menu-item" href="/profile/1/projects">My Projects</a>
+                            {/* <a className="menu-item" href="#/invites">My Invites</a> */}
+                            {/* <a className="menu-item" href="#/messages">My Messages</a> */}
+                            {/* <a className="menu-item" href="#/settings">My Settings</a> */}
+                            <div className="menu-item faint" role="presentation">
+                                Logout
+                                <IoLogOutOutline />
+                            </div>
+                        </div> : ''
+                    }
                 </div>
             </div>
         </header>

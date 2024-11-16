@@ -4,11 +4,10 @@ import ProjectsWrapper from './ProjectsWrapper/ProjectsWrapper'
 const Projects = () => {
     return (
         <section className="projects">
-
             <div className="container">
-                <header class="projects-header">
+                <header className="projects-header">
                     <h1>Projects</h1>
-                    <button class="start-project-btn">START A PROJECT</button>
+                    <button className="start-project-btn">START A PROJECT</button>
                 </header>
                 <div className="filter-container">
                     <div className="filter-section">

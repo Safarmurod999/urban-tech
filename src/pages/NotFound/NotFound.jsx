@@ -9,8 +9,8 @@ const NotFound = () => {
                 <div className="error-code">404</div>
                 <div className="main-text">Bunday sahifa mavjud emas</div>
                 <div className="sub-text">Siz qidirayotgan sahifa topilmadi.</div>
-                {route.pathname.startsWith("/admin") ? (
-                    <Link to={"/admin"} className="home-link">
+                {route.pathname.startsWith("/profile") ? (
+                    <Link to={"/profile"} className="home-link">
                         Bosh sahifa
                     </Link>
                 ) : (

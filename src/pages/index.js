@@ -6,3 +6,4 @@ export { default as Login } from "./Login/Login.jsx";
 export { default as Register } from "./Register/Register.jsx";
 export { default as NotFound } from "./NotFound/NotFound.jsx";
 export { default as Profile } from "./Admin/Profile/Profile.jsx";
+export { default as UserProjects } from "./Admin/UserProjects/UserProjects.jsx";

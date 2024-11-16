@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import { signUpUser } from '../../store/Auth/authSlice';
 
 const Register = () => {
   const [register, setRegister] = useState({
@@ -16,9 +18,24 @@ const Register = () => {
   const onChangeHandler = (e) => {
     setRegister({ ...register, [e.target.name]: e.target.value });
   };
+  const [showError, setShowError] = useState(false);
+  const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.auth);
+  const postLogin = async (e) => {
+    e.preventDefault();
+    try {
+      e.preventDefault();
+      dispatch(signUpUser({ ...login })).then(({ payload }) => {
+        console.log(payload)
+      });
+      setRegister({ email: "", password: "", firstname: "", lastname: "", location: "", username: "" });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   return (
     <section className="register">
-      <form className="register__form">
+      <form className="register__form" onSubmit={postLogin}>
         <div className="register__form--title">Register</div>
         <p className="register__form--welcome">Welcome to platform!</p>
         <div className="register__form--name">
@@ -88,15 +105,14 @@ const Register = () => {
             {/* <option value="startup">Startup</option> */}
           </select>
         </div>
-        <Link to={"/profile"}>
-          <button
-            className="register__form--sign"
-            type="submit"
-            onClick={(e) => postLogin(e)}
-          >
-            Kirish
-          </button>
-        </Link>
+        <button
+          className="register__form--sign"
+          type="submit"
+        >
+          Kirish
+        </button>
+        <p className="bottom">Already have an account? <Link to="/login">Click here!</Link></p>
+
       </form>
       <ToastContainer />
     </section>)

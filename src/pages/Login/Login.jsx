@@ -1,72 +1,55 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { signInUser } from "../../store/Auth/authSlice";
 
 function Login() {
   const [login, setLogin] = useState({
-    username: "",
+    email: "",
     password: "",
   });
+  const [showError, setShowError] = useState(false);
   const navigate = useNavigate();
   const onChangeHandler = (e) => {
     setLogin({ ...login, [e.target.name]: e.target.value });
   };
+  const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.auth);
   const postLogin = async (e) => {
     e.preventDefault();
     try {
-      await fetch(`${BASE_URL}auth/login`, {
-        method: "post",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(login),
-      }).then(async (res) => {
-        let response = await res.json();
-        if (response.data) {
-          toast.success("Login successfully !");
-          setTimeout(() => navigate("/admin"), 1000);
-          localStorage.setItem(
-            "access_token",
-            JSON.stringify(response.data["access_token"])
-          );
-          localStorage.setItem(
-            "username",
-            JSON.stringify(response.data["username"])
-          );
-          localStorage.setItem(
-            "isSuperAdmin",
-            JSON.stringify(response.data["isSuperAdmin"])
-          );
-        }else{
-          toast.error("Wrong credentials !");
-        }
+      e.preventDefault();
+      dispatch(signInUser({ ...login })).then(({ payload }) => {
+        navigate("/profile/1");
+        console.log(payload);
+        
       });
+      setLogin({ email: "", password: "" });
     } catch (error) {
       console.log(error.message);
     }
-    setLogin({ username: "", password: "" });
   };
   return (
     <section className="login">
-      <form className="login__form">
+      <form className="login__form" onSubmit={postLogin}>
         <div className="login__form--title">Login</div>
         <p className="login__form--welcome">Welcome to platform!</p>
         <div className="login__form--name">
           {" "}
           <input
-            type="text"
+            type="email"
             placeholder="Login"
             id="login"
-            name="username"
-            value={login.username}
+            name="email"
+            value={login.email}
             onChange={onChangeHandler}
           />
         </div>
         <div className="login__form--password">
           <input
-            type="text"
+            type="password"
             placeholder="Parol"
             id="password"
             name="password"
@@ -74,15 +57,13 @@ function Login() {
             onChange={onChangeHandler}
           />
         </div>
-        <Link to={"/admin"}>
-          <button
-            className="login__form--sign"
-            type="submit"
-            onClick={(e) => postLogin(e)}
-          >
-            Kirish
-          </button>
-        </Link>
+        <button
+          className="login__form--sign"
+          type="submit"
+        >
+          Kirish
+        </button>
+        <p className="bottom">Don't have an account? <Link to="/register">Click here!</Link></p>
       </form>
       <ToastContainer />
     </section>

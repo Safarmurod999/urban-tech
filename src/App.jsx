@@ -1,16 +1,17 @@
 import { BrowserRouter } from "react-router-dom"
 import Router from "./router/router"
+import { Provider } from "react-redux"
+import { store } from "./store/store"
 
 function App() {
 
   return (
     <>
-      <BrowserRouter future={{
-        v7_startTransition: true,
-        v7_relativeSplatPath: true,
-      }}>
-        <Router />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Router />
+        </BrowserRouter>
+      </Provider>
     </>
   )
 }

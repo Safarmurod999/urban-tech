@@ -41,7 +41,7 @@ body {
 }
 
 .profile-banner {
-  background-color: var(secondary-color);
+  background-color: var(--secondary-color);
   padding: 2rem;
   position: relative;
   min-height: 200px;
@@ -87,15 +87,17 @@ body {
 
   .student-badge {
     display: inline-flex;
+    color: var(--primary-color);
     background-color: #fff;
     padding: 0.25rem 0.75rem;
     border-radius: 20px;
     gap: 0.5rem;
     font-size: 0.9rem;
     margin-top: 0.5rem;
+    margin-bottom: 20px;
 
     .id-number {
-      color: var(secondary-color);
+      color: var(-secondary-color);
       font-weight: bold;
     }
   }
@@ -109,6 +111,7 @@ body {
   position: relative;
   z-index: 2;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin:0 0 20px;
 
   .membership {
     display: flex;
